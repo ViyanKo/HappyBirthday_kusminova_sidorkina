@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Column
@@ -16,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,22 +50,22 @@ class MainActivity : ComponentActivity() {
 fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
     Column (
         verticalArrangement = Arrangement.Center,
-        modifier = Modifier//.fillMaxSize() //подстраивается под максимальный размер экрана
+        modifier = Modifier//.fillMaxSize()
     )
 
     {
         Text(
-            text = message, //сообщение
-            fontSize = 100.sp, //наложение текста из-за отсутствия высоты строки
-            lineHeight = 116.sp, //высота строки
+            text = message,
+            fontSize = 100.sp,
+            lineHeight = 116.sp,
             textAlign = TextAlign.Center
         )
         Text (
-            text = from, //от кого
-            fontSize = 36.sp, //размер шрифта
+            text = from,
+            fontSize = 36.sp,
             modifier = Modifier
-                .padding(16.dp) //отступ от края
-                .align(alignment = Alignment.End) //выравниваем в конце
+                .padding(16.dp)
+                .align(alignment = Alignment.End)
         )
     }
 
@@ -73,6 +75,16 @@ fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
 @Composable
 fun BirthdayCardPreview() {
     HappyBirthdayTheme {
-        GreetingText(message = "Happy birthday Alina!", from = "from: Alina")
+        GreetingImage(message = "Happy birthday Alina!", from = "from: Alina")
+        //GreetingText(message = "Happy birthday Alina!", from = "from: Alina")
     }
+}
+
+@Composable
+fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) { // Modifier это не обязательный параметр который указыфвает элементу интерфейса как размещвться внутри родительского макета
+    val image = painterResource(R.drawable.androidparty)
+    Image(
+        painter = image,
+        contentDescription = null
+    )
 }
